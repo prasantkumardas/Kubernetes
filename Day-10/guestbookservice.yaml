@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: guestbook
+ # namespace: demo-namespace
+  labels:
+    app: guestbook
+spec:
+  ports:
+  - port: 30000
+    targetPort: http-server
+  selector:
+    app: guestbook
+  type: NodePort
+  
