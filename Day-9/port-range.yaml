@@ -1,0 +1,24 @@
+start_port = 30000
+end_port = 30010
+
+config = {
+    "kind": "Cluster",
+    "apiVersion": "kind.x-k8s.io/v1alpha4",
+    "nodes": [
+        {
+            "role": "control-plane",
+            "extraPortMappings": [
+                {
+                    "containerPort": port,
+                    "hostPort": port,
+                    "protocol": "TCP"
+                }
+                for port in range(start_port, end_port + 1)
+            ]
+        }
+    ]
+}
+
+import yaml
+with open("kind-config.yaml", "w") as f:
+    yaml.dump(config, f)
